@@ -29,13 +29,14 @@ extensions useful:
 
 The challenges assume three files (replace 00 with the day of the challenge).
 
-- `Data/Day00.txt`: the input data provided for the challenge
+- `Sources/Data/Day00.txt`: the input data provided for the challenge
 - `Sources/Day00.swift`: the code to solve the challenge
 - `Tests/Day00.swift`: any unit tests that you want to include
 
-To start a new day's challenge, make a copy of these files and update as
-necessary. The `AdventOfCode.swift` file controls which day's challenge is run
-with `swift run`. By default that runs the most recent challenge in the package.
+To start a new day's challenge, make a copy of these files, updating 00 to the day number,
+and then implement part 1 and 2. The `AdventOfCode.swift` file controls which challenge is
+run with `swift run`. Add your new type to its `allChallenges` array. By default it runs the
+most recent challenge.
 
 To supply command line arguments use `swift run AdventOfCode`. For example,
 `swift run -c release AdventOfCode --benchmark 3` builds the binary with full
