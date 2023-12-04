@@ -29,7 +29,7 @@ extensions useful:
 
 The challenges assume three files (replace 00 with the day of the challenge).
 
-- `Data/Day00.txt`: the input data provided for the challenge
+- `Sources/Data/Day00.txt`: the input data provided for the challenge
 - `Sources/Day00.swift`: the code to solve the challenge
 - `Tests/Day00.swift`: any unit tests that you want to include
 
