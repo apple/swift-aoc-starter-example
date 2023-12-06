@@ -36,8 +36,8 @@ struct AdventOfCode: AsyncParsableCommand {
     allChallenges.max(by: { $0.day < $1.day })!
   }
 
-  func run(part: () async throws -> Any, named: String) async -> Duration {
-    var result: Result<Any, Error> = .success("<unsolved>")
+  func run<T>(part: () async throws -> T, named: String) async -> Duration {
+    var result: Result<T, Error>?
     let timing = await ContinuousClock().measure {
       do {
         result = .success(try await part())
@@ -45,9 +45,11 @@ struct AdventOfCode: AsyncParsableCommand {
         result = .failure(error)
       }
     }
-    switch result {
+    switch result! {
     case .success(let success):
       print("\(named): \(success)")
+    case .failure(let failure as PartUnimplemented):
+      print("Day \(failure.day) part \(failure.part) unimplemented")
     case .failure(let failure):
       print("\(named): Failed with error: \(failure)")
     }
