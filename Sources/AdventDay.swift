@@ -67,7 +67,7 @@ extension AdventDay {
       subdirectory: "Data")
 
     guard let dataURL,
-      let data = try? String(contentsOf: dataURL)
+      let data = try? String(contentsOf: dataURL, encoding: .utf8)
     else {
       fatalError("Couldn't find file '\(dataFilename).txt' in the 'Data' directory.")
     }
