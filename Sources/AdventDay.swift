@@ -3,6 +3,8 @@
 import Foundation
 
 protocol AdventDay {
+  associatedtype Answer = Int
+
   /// The day of the Advent of Code challenge.
   ///
   /// You can implement this property, or, if your type is named with the
@@ -13,10 +15,15 @@ protocol AdventDay {
   init(data: String)
 
   /// Computes and returns the answer for part one.
-  func part1() async throws -> Any
+  func part1() async throws -> Answer
 
   /// Computes and returns the answer for part two.
-  func part2() async throws -> Any
+  func part2() async throws -> Answer
+}
+
+struct PartUnimplemented: Error {
+  let day: Int
+  let part: Int
 }
 
 extension AdventDay {
@@ -42,8 +49,8 @@ extension AdventDay {
 
   // Default implementation of `part2`, so there aren't interruptions before
   // working on `part1()`.
-  func part2() -> Any {
-    "Not implemented yet"
+  func part2() throws -> Answer {
+    throw PartUnimplemented(day: day, part: 2)
   }
 
   /// An initializer that loads the test data from the corresponding data file.
@@ -60,12 +67,12 @@ extension AdventDay {
       subdirectory: "Data")
 
     guard let dataURL,
-      let data = try? String(contentsOf: dataURL)
+      let data = try? String(contentsOf: dataURL, encoding: .utf8)
     else {
       fatalError("Couldn't find file '\(dataFilename).txt' in the 'Data' directory.")
     }
 
-    // On Windows, line separators may be CRLF. Converting to LF so that \n 
+    // On Windows, line separators may be CRLF. Converting to LF so that \n
     // works for string parsing.
     return data.replacingOccurrences(of: "\r", with: "")
   }

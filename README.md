@@ -33,8 +33,23 @@ The challenges assume three files (replace 00 with the day of the challenge).
 - `Sources/Day00.swift`: the code to solve the challenge
 - `Tests/Day00.swift`: any unit tests that you want to include
 
-To start a new day's challenge, make a copy of these files and update as
-necessary. The `AdventOfCode.swift` file controls which day's challenge is run
+To start a new day's challenge, make a copy of these files, updating 00 to the 
+day number.
+
+```diff
+// Add each new day implementation to this array:
+let allChallenges: [any AdventDay] = [
+-  Day00()
++  Day00(),
++  Day01(),
+]
+```
+
+Then implement part 1 and 2. The `AdventOfCode.swift` file controls which challenge
+is run with `swift run`. Add your new type to its `allChallenges` array. By default 
+it runs the most recent challenge.
+
+The `AdventOfCode.swift` file controls which day's challenge is run
 with `swift run`. By default that runs the most recent challenge in the package.
 
 To supply command line arguments use `swift run AdventOfCode`. For example,
